@@ -32,8 +32,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 " Plug 'bagrat/vim-workspace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'https://github.com/Shougo/unite.vim.git'
-" Plug 'https://github.com/Shougo/vimfiler.vim.git'
 Plug 'ryanoasis/vim-devicons'
 
 " color themes
@@ -52,6 +50,7 @@ syntax enable
 colorscheme OceanicNext
 " for nerd tree
 let g:airline_theme='oceanicnext'
+
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
@@ -64,11 +63,10 @@ let g:workspace_tab_icon = "\uf00a"
 let g:workspace_left_trunc_icon = "\uf0a8"
 let g:workspace_right_trunc_icon = "\uf0a9"
 
-let g:vimfiler_as_default_explorer = 1
 
 " key map
 
-" map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 " noremap <Tab> :WSNext<CR>
 " noremap <S-Tab> :WSPrev<CR>
@@ -76,7 +74,7 @@ let g:vimfiler_as_default_explorer = 1
 " noremap <Leader><S-Tab> :WSClose!<CR>
 " noremap <C-t> :WSTabNew<CR>
 
-cabbrev bonly WSBufOnly
+" cabbrev bonly WSBufOnly
 
 
 
