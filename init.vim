@@ -30,14 +30,13 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
-Plug 'bagrat/vim-workspace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-
 " color themes
-" Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 
-Plug 'mhartington/oceanic-next'
+" Plug 'mhartington/oceanic-next'
 
 call plug#end()
 
@@ -46,16 +45,19 @@ if (has("termguicolors"))
 endif
 
 " Theme
+" recommend fonts: losevka Extralight Italic Nerd Font
 syntax enable
-colorscheme OceanicNext
+colorscheme molokai
 " for nerd tree
 let g:airline_theme='oceanicnext'
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
-" for airline powerline fonts
+" for airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
 
 " for workspace
 let g:workspace_powerline_separators = 1
