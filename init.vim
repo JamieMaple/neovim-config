@@ -30,7 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
-" Plug 'bagrat/vim-workspace'
+Plug 'bagrat/vim-workspace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'ryanoasis/vim-devicons'
 
