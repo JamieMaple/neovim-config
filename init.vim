@@ -34,8 +34,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 " color themes
+Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'flazz/vim-colorschemes'
-
+Plug 'vim-airline/vim-airline-themes'
 " Plug 'mhartington/oceanic-next'
 
 call plug#end()
@@ -48,8 +49,11 @@ endif
 " recommend fonts: losevka Extralight Italic Nerd Font
 syntax enable
 colorscheme molokai
+
+call fugitive#head()
+
 " for nerd tree
-let g:airline_theme='oceanicnext'
+let g:airline_theme='molokai'
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
@@ -57,7 +61,6 @@ let g:oceanic_next_terminal_italic = 1
 " for airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
 
 " for workspace
 let g:workspace_powerline_separators = 1
