@@ -6,13 +6,18 @@ set relativenumber
 " set background None
 
 " indent config
-set noautoindent
+set autoindent
 set smartindent
 
 " tabs
+syntax enable
+filetype plugin indent on
 set tabstop=4
-set softtabstop=4
+" set softtabstop=4
+set shiftwidth=4
 set expandtab
+
+set ruler
 
 filetype on
 syntax on

@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/maple/antd/ant-design-pro-template'
-let g:netrw_dirhist_2='/Users/maple/Desktop/BytedanceProjects/api_gateway_admin'
-let g:netrw_dirhist_3='/Users/maple/Desktop/BytedanceProjects/api_gateway_admin/statics/frontend-project'
-let g:netrw_dirhist_4='/Users/maple/Desktop/BytedanceProjects/api_gateway_admin'
-let g:netrw_dirhist_5='/Users/maple/Desktop/learning/LearningNotes'
