@@ -6,16 +6,19 @@ set relativenumber
 " set background None
 
 " indent config
-set autoindent
-set smartindent
-
+" set autoindent
+" set smartindent
+filetype indent on
+set ci
 " tabs
 syntax enable
 filetype plugin indent on
 set tabstop=4
 " set softtabstop=4
 set shiftwidth=4
-set expandtab
+" set expandtab
+set noet
+
 
 set ruler
 
