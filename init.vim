@@ -3,6 +3,8 @@
 set ignorecase
 set number
 set relativenumber
+set cursorline
+set ruler
 
 " indent config
 filetype indent on
@@ -10,7 +12,14 @@ set ci
 " tabs
 syntax enable
 filetype plugin indent on
-set ts=2 sts=2 sw=2 et
+" global tabs
+set smarttab
+set ts=4 sts=4 sw=4 et
+
+autocmd filetype html setlocal ts=2 sw=2
+autocmd filetype css setlocal ts=2 sw=2
+autocmd filetype javascript setlocal ts=2 sw=2
+autocmd filetype typescript setlocal ts=2 sw=2
 
 filetype on
 syntax on
@@ -22,20 +31,27 @@ set encoding=UTF-8
 call plug#begin('~/.config/nvim/plugged')
 
 " make sure you are using single quotes
-" format
-" Plug 'junegunn/vim-easy-align'
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
+Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim
+
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'mhartington/oceanic-next'
+Plug 'ryanoasis/vim-devicons'
+
+" javascript & typescript
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'https://github.com/Quramy/tsuquyomi.git'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" golang
 
 call plug#end()
 
@@ -60,26 +76,12 @@ let g:oceanic_next_terminal_italic = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" for workspace
-let g:workspace_powerline_separators = 1
-let g:workspace_tab_icon = "\uf00a"
-let g:workspace_left_trunc_icon = "\uf0a8"
-let g:workspace_right_trunc_icon = "\uf0a9"
-
+" for typescript
+let g:tsuquyomi_completion_detail = 1
 
 " key map
 
 map <C-n> :NERDTreeToggle<CR>
-
-" noremap <Tab> :WSNext<CR>
-" noremap <S-Tab> :WSPrev<CR>
-" noremap <Leader><Tab> :WSClose<CR>
-" noremap <Leader><S-Tab> :WSClose!<CR>
-" noremap <C-t> :WSTabNew<CR>
-
-" cabbrev bonly WSBufOnly
-
-
 
 " disable arrows
 map <Up> <Nop>
