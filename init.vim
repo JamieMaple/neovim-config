@@ -1,26 +1,16 @@
 " genera config
 
+set ignorecase
 set number
 set relativenumber
 
-" set background None
-
 " indent config
-" set autoindent
-" set smartindent
 filetype indent on
 set ci
 " tabs
 syntax enable
 filetype plugin indent on
-set tabstop=4
-" set softtabstop=4
-set shiftwidth=4
-" set expandtab
-set noet
-
-
-set ruler
+set ts=2 sts=2 sw=2 et
 
 filetype on
 syntax on
