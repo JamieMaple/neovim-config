@@ -89,6 +89,9 @@ map <Down> <Nop>
 map <Left> <Nop>
 map <Right> <Nop>
 
+" clear search
+nnoremap <silent> <C-l>  :<C-u>noh<CR><C-l>
+
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyALign)
 
