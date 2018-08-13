@@ -89,6 +89,7 @@ let g:airline_theme='molokai'
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
+let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
 
 " for airline
 let g:airline_powerline_fonts = 1
@@ -97,8 +98,9 @@ let g:airline#extensions#tabline#enabled = 1
 " for typescript
 let g:tsuquyomi_completion_detail = 1
 
-" key map
-
+"""""""""""
+" key map "
+"""""""""""
 map <C-n> :NERDTreeToggle<CR>
 
 " disable arrows
