@@ -36,10 +36,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/YouCompleteMe'
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -56,8 +57,15 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 
+" markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" haskell
+Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 
 call plug#end()
 
@@ -65,17 +73,11 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" ale
+let b:ale_fixers = ['prettier', 'eslint']
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
+" auto save
+" let g:ale_fix_on_save = 1
 
 " Theme
 " recommend fonts: losevka Extralight Italic Nerd Font
@@ -90,6 +92,14 @@ let g:airline_theme='molokai'
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
+" ale
+let g:ale_echo_msg_error_str = 'error'
+let g:ale_echo_msg_warning_str = 'warn'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_warning = '😳'
+let g:ale_sign_error = '💩'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 " for airline
 let g:airline_powerline_fonts = 1
