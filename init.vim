@@ -40,7 +40,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe' " with typescript and node install
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -72,6 +72,10 @@ call plug#end()
 if (has("termguicolors"))
     set termguicolors
 endif
+
+" ycm
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " ale
 let b:ale_fixers = ['prettier', 'eslint']
