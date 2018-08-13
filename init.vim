@@ -36,6 +36,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
+Plug 'jiangmiao/auto-pairs'
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -50,6 +54,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/Quramy/tsuquyomi.git'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'moll/vim-node'
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -59,6 +64,18 @@ call plug#end()
 if (has("termguicolors"))
     set termguicolors
 endif
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Theme
 " recommend fonts: losevka Extralight Italic Nerd Font
