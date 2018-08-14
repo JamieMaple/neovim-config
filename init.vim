@@ -34,7 +34,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim
+Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim)
 Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
@@ -114,8 +114,9 @@ let g:tsuquyomi_completion_detail = 1
 let &t_ZH = "\e[3m"
 let &t_ZR = "\e[23m"
 " 
-highlight Comment cterm=italic gui=italic
-highlight Keyword cterm=italic gui=italic
+hi Comment cterm=italic gui=italic
+hi Keyword cterm=italic gui=italic
+hi Type cterm=italic gui=italic
 
 """""""""""
 " key map "
