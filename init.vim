@@ -111,6 +111,7 @@ let g:tsuquyomi_completion_detail = 1
 """""""""""
 " key map "
 """""""""""
+let mapleader = " "
 map <C-n> :NERDTreeToggle<CR>
 
 " disable arrows
@@ -124,6 +125,11 @@ nnoremap <silent> <C-l>  :<C-u>noh<CR><C-l>
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyALign)
+
+" goto
+map <leader>gtt :YcmCompleter GoTo<CR>
+map <leader>gtd :YcmCompleter GoToDefinition<CR>
+map <leader>gtr :YcmCompleter GoToReferences<CR>
 
 
 
