@@ -10,7 +10,6 @@ set ruler
 filetype indent on
 set ci
 " tabs
-syntax enable
 filetype plugin indent on
 " global tabs
 set smarttab
@@ -69,10 +68,6 @@ Plug 'https://github.com/neovimhaskell/haskell-vim.git'
 
 call plug#end()
 
-if (has("termguicolors"))
-    set termguicolors
-endif
-
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -85,6 +80,9 @@ let b:ale_fixers = ['prettier', 'eslint']
 
 " Theme
 " recommend fonts: losevka Extralight Italic Nerd Font
+if (has("termguicolors"))
+    set termguicolors
+endif
 syntax enable
 colorscheme molokai
 
@@ -111,6 +109,13 @@ let g:airline#extensions#tabline#enabled = 1
 
 " for typescript
 let g:tsuquyomi_completion_detail = 1
+
+" Enable Italics
+let &t_ZH = "\e[3m"
+let &t_ZR = "\e[23m"
+" 
+highlight Comment cterm=italic gui=italic
+highlight Keyword cterm=italic gui=italic
 
 """""""""""
 " key map "
