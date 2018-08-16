@@ -13,6 +13,7 @@ set ci
 filetype plugin indent on
 " global tabs
 set smarttab
+set smartindent
 set ts=4 sts=4 sw=4 et
 
 autocmd filetype html setlocal ts=2 sw=2
