@@ -73,7 +73,11 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " ale
-let b:ale_fixers = ['prettier', 'eslint']
+let b:ale_linters = {
+\   'javascript': ['eslint']
+\ }
+let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_linters_explicit = 1
 
 " auto save
 " let g:ale_fix_on_save = 1
