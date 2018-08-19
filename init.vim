@@ -5,6 +5,7 @@ set number
 set relativenumber
 set cursorline
 set ruler
+set foldmethod=indent
 
 " tabs
 filetype plugin indent on
