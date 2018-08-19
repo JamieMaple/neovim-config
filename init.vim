@@ -15,6 +15,9 @@ autocmd filetype html setlocal ts=2 sw=2
 autocmd filetype css setlocal ts=2 sw=2
 autocmd filetype javascript setlocal ts=2 sw=2
 autocmd filetype typescript setlocal ts=2 sw=2
+autocmd filetype wxss setlocal ts=2 sw=2
+autocmd filetype json setlocal ts=2 sw=2
+autocmd filetype wxml setlocal ts=2 sw=2
 
 filetype on
 syntax on
@@ -36,37 +39,48 @@ Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe' " with typescript and node install
+Plug 'scrooloose/nerdcommenter'
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
+" xml
+Plug 'https://github.com/othree/xml.vim.git'
+
 " javascript & typescript
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'neoclide/vim-jsx-improve'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/Quramy/tsuquyomi.git'
-Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'moll/vim-node'
+
+" wxapp
+Plug 'chemzqm/wxapp.vim'
 
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " haskell
-Plug 'https://github.com/neovimhaskell/haskell-vim.git'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_semantic_triggers = {
+\   'css': [ 're!^\s{2}', 're!:\s+' ],
+\   'less': [ 're!^\s{2}', 're!:\s+' ],
+\   'stylus': [ 're!^\s{2}', 're!:\s+' ],
+\   'wxss': [ 're!^\s{2}', 're!:\s+' ],
+\ }
 
 " ale
 let b:ale_linters = {
@@ -77,6 +91,46 @@ let g:ale_linters_explicit = 1
 
 " auto save
 " let g:ale_fix_on_save = 1
+" emmet
+let g:user_emmet_mode='a'
+let g:user_emmet_settings = {
+\ 'wxss': {
+\   'extends': 'css',
+\ },
+\ 'wxml': {
+\   'extends': 'html',
+\   'aliases': {
+\     'div': 'view',
+\     'span': 'text',
+\   },
+\  'default_attributes': {
+\     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+\     'navigator': [{'url': '', 'redirect': 'false'}],
+\     'scroll-view': [{'bindscroll': ''}],
+\     'swiper': [{'autoplay': 'false', 'current': '0'}],
+\     'icon': [{'type': 'success', 'size': '23'}],
+\     'progress': [{'precent': '0'}],
+\     'button': [{'size': 'default'}],
+\     'checkbox-group': [{'bindchange': ''}],
+\     'checkbox': [{'value': '', 'checked': ''}],
+\     'form': [{'bindsubmit': ''}],
+\     'input': [{'type': 'text'}],
+\     'label': [{'for': ''}],
+\     'picker': [{'bindchange': ''}],
+\     'radio-group': [{'bindchange': ''}],
+\     'radio': [{'checked': ''}],
+\     'switch': [{'checked': ''}],
+\     'slider': [{'value': ''}],
+\     'action-sheet': [{'bindchange': ''}],
+\     'modal': [{'title': ''}],
+\     'loading': [{'bindchange': ''}],
+\     'toast': [{'duration': '1500'}],
+\     'audio': [{'src': ''}],
+\     'video': [{'src': ''}],
+\     'image': [{'src': '', 'mode': 'scaleToFill'}],
+\   }
+\ },
+\}
 
 " Theme
 " recommend fonts: losevka Extralight Italic Nerd Font
@@ -84,12 +138,15 @@ if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable
-colorscheme molokai
+" colorscheme molokai
+colorscheme gruvbox
+set background=dark
 
 call fugitive#head()
 
 " for nerd tree
-let g:airline_theme='molokai'
+" let g:airline_theme='molokai'
+let g:airline_theme='gruvbox'
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
@@ -141,5 +198,10 @@ map <leader>gtt :YcmCompleter GoTo<CR>
 map <leader>gtd :YcmCompleter GoToDefinition<CR>
 map <leader>gtr :YcmCompleter GoToReferences<CR>
 
+" Remap keys for gotos
+" nmap <silent> <leader>gd <Plug>(coc-definition)
+" map <silent> <leader>gy <Plug>(coc-type-definition)
+" nmap <silent> <leader>gi <Plug>(coc-implementation)
+" nmap <silent> <leader>gr <Plug>(coc-references)
 
 
