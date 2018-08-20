@@ -20,6 +20,7 @@ autocmd filetype typescript setlocal ts=2 sw=2
 autocmd filetype wxss setlocal ts=2 sw=2
 autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
+autocmd filetype vue setlocal ts=2 sw=2
 
 filetype on
 syntax on
@@ -42,7 +43,6 @@ Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -71,6 +71,7 @@ Plug 'plasticboy/vim-markdown'
 " golang
 " haskell
 Plug 'sheerun/vim-polyglot'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -90,6 +91,9 @@ let b:ale_linters = {
 \ }
 let g:ale_fixers = ['prettier', 'eslint']
 let g:ale_linters_explicit = 1
+
+" vue
+let g:vue_disable_pre_processors=1
 
 " auto save
 " let g:ale_fix_on_save = 1
