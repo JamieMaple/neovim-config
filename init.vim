@@ -6,6 +6,7 @@ set relativenumber
 set cursorline
 set ruler
 set foldmethod=indent
+set shell=sh
 
 " tabs
 filetype plugin indent on
@@ -144,6 +145,20 @@ colorscheme gruvbox
 set background=dark
 
 call fugitive#head()
+
+" nerd git
+let g:NERDTreeIndicatorMapCustom = {
+\ "Modified"  : "✹",
+\ "Staged"    : "✚",
+\ "Untracked" : "✭",
+\ "Renamed"   : "➜",
+\ "Unmerged"  : "═",
+\ "Deleted"   : "✖",
+\ "Dirty"     : "✗",
+\ "Clean"     : "✔︎",
+\ 'Ignored'   : '☒',
+\ "Unknown"   : "?"
+\ }
 
 " for nerd tree
 " let g:airline_theme='molokai'
