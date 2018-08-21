@@ -15,6 +15,7 @@ set ts=4 sts=4 sw=4 et
 
 autocmd filetype html setlocal ts=2 sw=2
 autocmd filetype css setlocal ts=2 sw=2
+autocmd filetype less setlocal ts=2 sw=2
 autocmd filetype javascript setlocal ts=2 sw=2
 autocmd filetype typescript setlocal ts=2 sw=2
 autocmd filetype wxss setlocal ts=2 sw=2
@@ -217,6 +218,10 @@ nmap ga <Plug>(EasyALign)
 map <leader>gtt :YcmCompleter GoTo<CR>
 map <leader>gtd :YcmCompleter GoToDefinition<CR>
 map <leader>gtr :YcmCompleter GoToReferences<CR>
+map <leader>hh <C-w>h
+map <leader>ll <C-w>l
+map <leader>jj <C-w>j
+map <leader>kk <C-w>k
 
 " Remap keys for gotos
 " nmap <silent> <leader>gd <Plug>(coc-definition)
