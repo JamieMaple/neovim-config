@@ -22,7 +22,8 @@ autocmd filetype wxss setlocal ts=2 sw=2
 autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
-autocmd BufEnter,BufRead *.vue set filetype=vue.javascript
+autocmd FileType vue syntax sync fromstart
+
 
 filetype on
 syntax on
