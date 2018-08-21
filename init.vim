@@ -22,6 +22,7 @@ autocmd filetype wxss setlocal ts=2 sw=2
 autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
+autocmd BufEnter,BufRead *.vue set filetype=vue.javascript
 
 filetype on
 syntax on
@@ -44,6 +45,7 @@ Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
+Plug 'https://github.com/skywind3000/asyncrun.vim.git'
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -88,9 +90,21 @@ let g:ycm_semantic_triggers = {
 
 " ale
 let b:ale_linters = {
-\   'javascript': ['eslint']
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint']
 \ }
-let g:ale_fixers = ['prettier', 'eslint']
+
+let g:ale_fixers = {
+\ 'javascript': [
+\	'prettier'
+\ ],
+\ 'typescript': ['tslint', 'prettier'],
+\   'json': ['prettier'],
+\ 'json5': ['prettier'],
+\ 'css': ['stylelint', 'prettier'],
+\ 'less': ['stylelint', 'prettier'],
+\ 'vue': ['prettier'],
+\}
 let g:ale_linters_explicit = 1
 
 " vue
