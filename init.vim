@@ -47,6 +47,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
+Plug 'Yggdroot/indentLine'
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -71,6 +72,7 @@ Plug 'chemzqm/wxapp.vim'
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " golang
 " haskell
@@ -78,6 +80,16 @@ Plug 'sheerun/vim-polyglot'
 Plug 'posva/vim-vue'
 
 call plug#end()
+
+" indent enable
+let g:indentLine_char = '┆'
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+
+" markdown
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
+
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
