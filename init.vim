@@ -8,6 +8,7 @@ set ruler
 set foldmethod=indent
 set shell=sh
 
+
 " tabs
 filetype plugin indent on
 " global tabs
@@ -87,9 +88,9 @@ let g:indentLine_color_tty_light = 7 " (default: 4)
 let g:indentLine_color_dark = 1 " (default: 2)
 
 " markdown
+let g:vim_markdown_conceal = 0
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Google Chrome'
-
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
