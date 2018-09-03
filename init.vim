@@ -79,6 +79,7 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 " haskell
 Plug 'sheerun/vim-polyglot'
 Plug 'posva/vim-vue'
+Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
 
