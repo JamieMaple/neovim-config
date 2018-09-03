@@ -61,11 +61,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'https://github.com/othree/xml.vim.git'
 
 " javascript & typescript
+Plug 'pangloss/vim-javascript'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/Quramy/tsuquyomi.git'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'moll/vim-node'
+Plug 'posva/vim-vue'
 
 " wxapp
 Plug 'chemzqm/wxapp.vim'
@@ -76,9 +78,9 @@ Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 
 " golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " haskell
-Plug 'sheerun/vim-polyglot'
-Plug 'posva/vim-vue'
+" c#
 Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
@@ -92,6 +94,27 @@ let g:indentLine_color_dark = 1 " (default: 2)
 let g:vim_markdown_conceal = 0
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Google Chrome'
+
+" javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+"let g:javascript_conceal_function             = "ƒ"
+"let g:javascript_conceal_null                 = "ø"
+"let g:javascript_conceal_this                 = "@"
+"let g:javascript_conceal_return               = "⇚"
+"let g:javascript_conceal_undefined            = "¿"
+"let g:javascript_conceal_NaN                  = "ℕ"
+"let g:javascript_conceal_prototype            = "¶"
+"let g:javascript_conceal_static               = "•"
+"let g:javascript_conceal_super                = "Ω"
+"let g:javascript_conceal_arrow_function       = "⇒"
+"let g:javascript_conceal_noarg_arrow_function = "🞅"
+"let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -255,6 +278,8 @@ map <leader>hh <C-w>h
 map <leader>ll <C-w>l
 map <leader>jj <C-w>j
 map <leader>kk <C-w>k
+
+map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
 " Remap keys for gotos
 " nmap <silent> <leader>gd <Plug>(coc-definition)
