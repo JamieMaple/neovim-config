@@ -105,6 +105,7 @@ let g:ycm_semantic_triggers = {
 
 " ale
 let b:ale_linters = {
+\   'cs': ['OmniSharp'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint']
 \ }
@@ -124,6 +125,9 @@ let g:ale_linters_explicit = 1
 
 " vue
 let g:vue_disable_pre_processors=1
+
+" cs
+let g:OmniSharp_server_use_mono = 1
 
 " auto save
 " let g:ale_fix_on_save = 1
