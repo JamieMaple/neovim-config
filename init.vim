@@ -5,9 +5,9 @@ set number
 set relativenumber
 set cursorline
 set ruler
-set foldmethod=indent
 set shell=sh
-
+set foldmethod=indent
+set foldlevelstart=99
 
 " tabs
 filetype plugin indent on
@@ -24,7 +24,6 @@ autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
 autocmd FileType vue syntax sync fromstart
-
 
 filetype on
 syntax on
@@ -45,7 +44,37 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/YouCompleteMe' " with typescript and node install
+" deoplete
+
+" vim
+Plug 'https://github.com/Shougo/neco-vim'
+Plug 'http://github.com/Shougo/vimproc'
+
+" github
+Plug 'SevereOverfl0w/deoplete-github'
+
+" haksell
+Plug 'https://github.com/eagletmt/neco-ghc'
+
+" c#
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
+
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'zchee/deoplete-go', { 'do': 'make'} " add gocode
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
+" js & ts
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
 Plug 'Yggdroot/indentLine'
@@ -77,11 +106,6 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 
-" golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" haskell
-" c#
-Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
 
@@ -119,12 +143,22 @@ augroup END
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_semantic_triggers = {
-\   'css': [ 're!^\s{2}', 're!:\s+' ],
-\   'less': [ 're!^\s{2}', 're!:\s+' ],
-\   'stylus': [ 're!^\s{2}', 're!:\s+' ],
-\   'wxss': [ 're!^\s{2}', 're!:\s+' ],
-\ }
+" deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ })
+
+" github
+let g:deoplete#sources = {}
+let g:deoplete#sources.gitcommit=['github']
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.gitcommit = '.+'
+
+call deoplete#util#set_pattern(
+  \ g:deoplete#omni#input_patterns,
+  \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
 
 " ale
 let b:ale_linters = {
