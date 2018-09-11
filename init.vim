@@ -62,8 +62,8 @@ Plug 'zchee/deoplete-clang'
 " c#
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
+"Plug 'OmniSharp/omnisharp-vim'
+"Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
