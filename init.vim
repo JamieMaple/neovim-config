@@ -57,7 +57,7 @@ Plug 'SevereOverfl0w/deoplete-github'
 Plug 'https://github.com/eagletmt/neco-ghc'
 
 " c family
-Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-clang'
 
 " c#
 Plug 'SirVer/ultisnips'
