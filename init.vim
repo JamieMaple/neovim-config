@@ -56,6 +56,9 @@ Plug 'SevereOverfl0w/deoplete-github'
 " haksell
 Plug 'https://github.com/eagletmt/neco-ghc'
 
+" c family
+Plug 'zchee/deoplete-clang'
+
 " c#
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -144,6 +147,8 @@ augroup END
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 " deoplete
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
 \ 'auto_complete_delay': 200,
@@ -155,10 +160,6 @@ let g:deoplete#sources = {}
 let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.gitcommit = '.+'
-
-call deoplete#util#set_pattern(
-  \ g:deoplete#omni#input_patterns,
-  \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
 
 " ale
 let b:ale_linters = {
