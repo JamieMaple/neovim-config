@@ -51,7 +51,7 @@ Plug 'https://github.com/Shougo/neco-vim'
 Plug 'http://github.com/Shougo/vimproc'
 
 " github
-Plug 'SevereOverfl0w/deoplete-github'
+"Plug 'SevereOverfl0w/deoplete-github'
 
 " haksell
 Plug 'https://github.com/eagletmt/neco-ghc'
@@ -62,7 +62,7 @@ Plug 'https://github.com/eagletmt/neco-ghc'
 " c#
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim' " need to have some config files
 "Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
 
 " golang
@@ -75,7 +75,13 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
@@ -156,7 +162,7 @@ call deoplete#custom#option({
 \ })
 
 " github
-let g:deoplete#sources = {}
+let g:deoplete#sources = get(g:,'deoplete#sources',{})
 let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.gitcommit = '.+'
@@ -239,6 +245,9 @@ syntax enable
 " colorscheme molokai
 colorscheme gruvbox
 set background=dark
+" bg transparent
+"hi! Normal ctermbg=NONE guibg=NONE
+
 
 call fugitive#head()
 
