@@ -44,6 +44,8 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'majutsushi/tagbar'
+"Plug 'ludovicchabant/vim-gutentags'
 " deoplete
 
 " vim
@@ -57,7 +59,7 @@ Plug 'http://github.com/Shougo/vimproc'
 Plug 'https://github.com/eagletmt/neco-ghc'
 
 " c family
-"Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-clang'
 
 " c#
 Plug 'SirVer/ultisnips'
@@ -136,30 +138,25 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
-"let g:javascript_conceal_function             = "ƒ"
-"let g:javascript_conceal_null                 = "ø"
-"let g:javascript_conceal_this                 = "@"
-"let g:javascript_conceal_return               = "⇚"
-"let g:javascript_conceal_undefined            = "¿"
-"let g:javascript_conceal_NaN                  = "ℕ"
-"let g:javascript_conceal_prototype            = "¶"
-"let g:javascript_conceal_static               = "•"
-"let g:javascript_conceal_super                = "Ω"
-"let g:javascript_conceal_arrow_function       = "⇒"
-"let g:javascript_conceal_noarg_arrow_function = "🞅"
-"let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 " ycm
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+
+
+let g:UltiSnipsExpandTrigger="<tab>"
 " deoplete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-\ 'auto_complete_delay': 200,
+\ 'auto_complete_delay': 16,
 \ 'smart_case': v:true,
 \ })
+
+" deoplete c
+" for macos
+let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header='/usr/local/Cellar/llvm/6.0.1/include/clang'
+let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
 
 " github
 let g:deoplete#sources = get(g:,'deoplete#sources',{})
@@ -169,7 +166,11 @@ let g:deoplete#keyword_patterns.gitcommit = '.+'
 
 " ale
 let b:ale_linters = {
-\   'cs': ['OmniSharp'],
+\   'c': ['clang'],
+\   'c++': ['clang'],
+\   'go': ['golint', 'go vet', 'go build'],
+\   'haskell': ['ghc'],
+\   'c#': ['OmniSharp'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint']
 \ }
@@ -276,8 +277,8 @@ let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_warning_str = 'warn'
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
-let g:ale_sign_warning = '😳'
-let g:ale_sign_error = '💩'
+let g:ale_sign_warning = '⚡'
+let g:ale_sign_error = '✗'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
@@ -315,9 +316,11 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyALign)
 
 " goto
-map <leader>gtt :YcmCompleter GoTo<CR>
-map <leader>gtd :YcmCompleter GoToDefinition<CR>
-map <leader>gtr :YcmCompleter GoToReferences<CR>
+"map <leader>gtt :YcmCompleter GoTo<CR>
+"map <leader>gtd :YcmCompleter GoToDefinition<CR>
+"map <leader>gtr :YcmCompleter GoToReferences<CR>
+
+" split switch
 map <leader>hh <C-w>h
 map <leader>ll <C-w>l
 map <leader>jj <C-w>j
@@ -325,10 +328,5 @@ map <leader>kk <C-w>k
 
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 
-" Remap keys for gotos
-" nmap <silent> <leader>gd <Plug>(coc-definition)
-" map <silent> <leader>gy <Plug>(coc-type-definition)
-" nmap <silent> <leader>gi <Plug>(coc-implementation)
-" nmap <silent> <leader>gr <Plug>(coc-references)
 
 
