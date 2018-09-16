@@ -117,7 +117,6 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'JamshedVesuna/vim-markdown-preview'
 
-
 call plug#end()
 
 " indent enable
@@ -169,7 +168,7 @@ let b:ale_linters = {
 \   'c': ['clang'],
 \   'c++': ['clang'],
 \   'go': ['golint', 'go vet', 'go build'],
-\   'haskell': ['ghc'],
+\   'haskell': ['cabal-ghc', 'stack-ghc'],
 \   'c#': ['OmniSharp'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint']
@@ -197,6 +196,7 @@ let g:OmniSharp_server_use_mono = 1
 " auto save
 " let g:ale_fix_on_save = 1
 " emmet
+let g:user_emmet_leader_key='<C-Z>'
 let g:user_emmet_mode='a'
 let g:user_emmet_settings = {
 \ 'wxss': {
