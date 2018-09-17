@@ -24,9 +24,11 @@ autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
 autocmd FileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead fish_funced set ft=fish
 
 filetype on
 syntax on
+
 
 set encoding=UTF-8
 
@@ -73,6 +75,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'OmniSharp/omnisharp-vim' " need to have some config files
 "Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
+
+" fish
+Plug 'https://github.com/dag/vim-fish'
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
