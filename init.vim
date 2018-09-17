@@ -37,7 +37,14 @@ call plug#begin('~/.config/nvim/plugged')
 " make sure you are using single quotes
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" async cmd execution
+Plug 'https://github.com/Shougo/vimproc.vim'
+" tree relational
+Plug 'https://github.com/Shougo/neomru.vim'
+Plug 'https://github.com/Shougo/unite.vim'
+Plug 'https://github.com/Shougo/vimfiler.vim'
+
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim' " [doc](https://github.com/mileszs/ack.vim)
 Plug 'w0rp/ale'
@@ -45,7 +52,7 @@ Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
-"Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 " deoplete
 
 " vim
@@ -120,9 +127,16 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 
 " indent enable
-let g:indentLine_char = '┆'
+let g:indentLine_char = '▏'
+" Vim
+let g:indentLine_color_term = 239
+
+" GVim
+let g:indentLine_color_gui = '#888'
+
+" none X terminal
 let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
+let g:indentLine_color_dark = 7 " (default: 2)
 
 " markdown
 let g:vim_markdown_conceal = 0
@@ -168,7 +182,7 @@ let b:ale_linters = {
 \   'c': ['clang'],
 \   'c++': ['clang'],
 \   'go': ['golint', 'go vet', 'go build'],
-\   'haskell': ['cabal-ghc', 'stack-ghc'],
+\   'haskell': ['ghc', 'cabal-ghc', 'stack-ghc'],
 \   'c#': ['OmniSharp'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint']
@@ -270,6 +284,9 @@ let g:NERDTreeIndicatorMapCustom = {
 " let g:airline_theme='molokai'
 let g:airline_theme='gruvbox'
 
+" tree
+let g:vimfiler_as_default_explorer = 1
+
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
@@ -297,11 +314,49 @@ hi Comment cterm=italic gui=italic
 hi Keyword cterm=italic gui=italic
 hi Type cterm=italic gui=italic
 
+" tree
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+
 """""""""""
 " key map "
 """""""""""
 let mapleader = " "
-map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
 " disable arrows
 map <Up> <Nop>
