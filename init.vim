@@ -263,7 +263,6 @@ set background=dark
 " bg transparent
 "hi! Normal ctermbg=NONE guibg=NONE
 
-
 call fugitive#head()
 
 " nerd git
@@ -283,7 +282,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " let g:airline_theme='molokai'
 let g:airline_theme='gruvbox'
 
-" tree
+" vim filer
 "   Settings | VimFiler
 "   ~use as default file explorer
 let g:vimfiler_as_default_explorer = 1
@@ -303,11 +302,11 @@ let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_safe_mode_by_default = 0
 "   ~default profile
 call vimfiler#custom#profile('default', 'context', {
-      \ 'safe' : 0,
+      \ 'safe' : 1,
       \ 'auto-cd' : 1,
       \ })
 "   ~don't hide dotfiles
-let g:vimfiler_ignore_pattern = []
+let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$']
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
