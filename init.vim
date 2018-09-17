@@ -182,29 +182,6 @@ let g:deoplete#sources.gitcommit=['github']
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.gitcommit = '.+'
 
-" ale
-let b:ale_linters = {
-\   'c': ['clang'],
-\   'c++': ['clang'],
-\   'go': ['golint', 'go vet', 'go build'],
-\   'haskell': ['ghc', 'cabal-ghc', 'stack-ghc'],
-\   'c#': ['OmniSharp'],
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint']
-\ }
-
-let g:ale_fixers = {
-\ 'javascript': [
-\	'prettier'
-\ ],
-\ 'typescript': ['tslint', 'prettier'],
-\   'json': ['prettier'],
-\ 'json5': ['prettier'],
-\ 'css': ['stylelint', 'prettier'],
-\ 'less': ['stylelint', 'prettier'],
-\ 'vue': ['prettier'],
-\}
-let g:ale_linters_explicit = 1
 
 " vue
 let g:vue_disable_pre_processors=1
@@ -317,13 +294,40 @@ let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
 " ale
+let b:ale_linters = {
+\   'c': ['clang'],
+\   'c++': ['clang'],
+\   'go': ['golint', 'go vet', 'go build'],
+\   'haskell': ['ghc', 'cabal-ghc', 'stack-ghc'],
+\   'c#': ['OmniSharp'],
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint']
+\ }
+packloadall
+silent! helptags ALL
+
+let g:ale_fixers = {
+\ 'javascript': [
+\	'prettier'
+\ ],
+\ 'typescript': ['tslint', 'prettier'],
+\   'json': ['prettier'],
+\ 'json5': ['prettier'],
+\ 'css': ['stylelint', 'prettier'],
+\ 'less': ['stylelint', 'prettier'],
+\ 'vue': ['prettier'],
+\}
+"let g:ale_linters_explicit = 1 " 有坑。。。开启打开文件夹不能用了。。
+"let g:ale_sign_column_always = 1 " 左侧始终打开
+let g:ale_open_list = 1
+let g:ale_set_loclist = 1
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_warning_str = 'warn'
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
 let g:ale_sign_warning = '⚡'
 let g:ale_sign_error = '✗'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_keep_list_window_open = 0
+"let g:ale_set_quickfix = 1
 
 " for airline
 let g:airline_powerline_fonts = 1
