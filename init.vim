@@ -280,12 +280,34 @@ let g:NERDTreeIndicatorMapCustom = {
 \ "Unknown"   : "?"
 \ }
 
-" for nerd tree
 " let g:airline_theme='molokai'
 let g:airline_theme='gruvbox'
 
 " tree
+"   Settings | VimFiler
+"   ~use as default file explorer
 let g:vimfiler_as_default_explorer = 1
+"   ~add devicons to vimfilers
+let g:webdevicons_enable_vimfiler = 1
+"   ~modify indentation
+let g:vimfiler_tree_indentation = 2
+"   ~default tree leaf icon
+let g:vimfiler_tree_leaf_icon = ""
+"   ~default tree opened icon
+let g:vimfiler_tree_opened_icon = ""
+"   ~default tree closed icon
+let g:vimfiler_tree_closed_icon = ""
+"   ~change default directory
+let g:vimfiler_enable_auto_cd = 1
+"   ~don't use safe mode by default
+let g:vimfiler_safe_mode_by_default = 0
+"   ~default profile
+call vimfiler#custom#profile('default', 'context', {
+      \ 'safe' : 0,
+      \ 'auto-cd' : 1,
+      \ })
+"   ~don't hide dotfiles
+let g:vimfiler_ignore_pattern = []
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
@@ -356,6 +378,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
 """""""""""
 let mapleader = " "
 " map <C-n> :NERDTreeToggle<CR>
+map <C-n> :VimFilerExplorer<CR>
 nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
 " disable arrows
