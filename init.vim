@@ -40,8 +40,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" async cmd execution
-Plug 'https://github.com/Shougo/vimproc.vim'
 " tree relational
 Plug 'https://github.com/Shougo/neomru.vim'
 Plug 'https://github.com/Shougo/unite.vim'
@@ -56,21 +54,24 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 " Plug 'ludovicchabant/vim-gutentags'
 " deoplete
+Plug 'davidhalter/jedi-vim'
 
 " vim
 Plug 'https://github.com/Shougo/neco-vim'
-Plug 'http://github.com/Shougo/vimproc'
+
+" python
+"Plug 'zchee/deoplete-jedi'
 
 " github
-"Plug 'SevereOverfl0w/deoplete-github'
+" Plug 'SevereOverfl0w/deoplete-github'
 
 " haksell
 Plug 'https://github.com/eagletmt/neco-ghc'
 
-" c family
-Plug 'zchee/deoplete-clang'
+"" c family
+"Plug 'zchee/deoplete-clang'
 
-" c#
+"" c#
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'OmniSharp/omnisharp-vim' " need to have some config files
@@ -81,23 +82,23 @@ Plug 'https://github.com/dag/vim-fish'
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'zchee/deoplete-go', { 'do': 'make'} " add gocode
+"Plug 'zchee/deoplete-go', { 'do': 'make'} " add gocode
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " js & ts
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
-" Plug 'Valloric/YouCompleteMe' " with typescript and node install
+Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
 Plug 'Yggdroot/indentLine'
@@ -112,10 +113,12 @@ Plug 'ryanoasis/vim-devicons'
 " xml
 Plug 'https://github.com/othree/xml.vim.git'
 
+" async cmd execution
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
 " javascript & typescript
 Plug 'pangloss/vim-javascript'
 Plug 'neoclide/vim-jsx-improve'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/Quramy/tsuquyomi.git'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'moll/vim-node'
@@ -160,27 +163,31 @@ augroup END
 " ycm
 
 
-let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsExpandTrigger="<tab>"
 " deoplete
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-\ 'auto_complete_delay': 16,
-\ 'smart_case': v:true,
-\ })
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option({
+" \ 'auto_complete_delay': 16,
+" \ 'smart_case': v:true,
+"\ })
+
+" jedi
+" let g:jedi#completions_enabled = 0
+" let g:jedi#goto_definitions_command = '<leader>t'
 
 " deoplete c
 " for macos
-let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header='/usr/local/Cellar/llvm/6.0.1/include/clang'
-let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
+" let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
+" let g:deoplete#sources#clang#clang_header='/usr/local/Cellar/llvm/6.0.1/include/clang'
+" let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
 
 " github
-let g:deoplete#sources = get(g:,'deoplete#sources',{})
-let g:deoplete#sources.gitcommit=['github']
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.gitcommit = '.+'
+" let g:deoplete#sources = get(g:,'deoplete#sources',{})
+" let g:deoplete#sources.gitcommit=['github']
+" let g:deoplete#keyword_patterns = {}
+" let g:deoplete#keyword_patterns.gitcommit = '.+'
 
 
 " vue
@@ -303,8 +310,6 @@ let b:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint']
 \ }
-packloadall
-silent! helptags ALL
 
 let g:ale_fixers = {
 \ 'javascript': [
@@ -318,15 +323,15 @@ let g:ale_fixers = {
 \ 'vue': ['prettier'],
 \}
 "let g:ale_linters_explicit = 1 " 有坑。。。开启打开文件夹不能用了。。
-"let g:ale_sign_column_always = 1 " 左侧始终打开
-let g:ale_open_list = 1
+let g:ale_sign_column_always = 1 " 左侧始终打开
+"let g:ale_open_list = 1
 let g:ale_set_loclist = 1
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_warning_str = 'warn'
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
 let g:ale_sign_warning = '⚡'
 let g:ale_sign_error = '✗'
-let g:ale_keep_list_window_open = 0
+"let g:ale_keep_list_window_open = 0
 "let g:ale_set_quickfix = 1
 
 " for airline
