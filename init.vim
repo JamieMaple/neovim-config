@@ -161,6 +161,10 @@ augroup javascript_folding
 augroup END
 
 " ycm
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_invoke_completion = '<C-space>'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 
 "let g:UltiSnipsExpandTrigger="<tab>"
@@ -323,7 +327,7 @@ let g:ale_fixers = {
 \ 'vue': ['prettier'],
 \}
 "let g:ale_linters_explicit = 1 " 有坑。。。开启打开文件夹不能用了。。
-let g:ale_sign_column_always = 1 " 左侧始终打开
+"let g:ale_sign_column_always = 1 " 左侧始终打开
 "let g:ale_open_list = 1
 let g:ale_set_loclist = 1
 let g:ale_echo_msg_error_str = 'error'
@@ -407,9 +411,9 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyALign)
 
 " goto
-"map <leader>gtt :YcmCompleter GoTo<CR>
-"map <leader>gtd :YcmCompleter GoToDefinition<CR>
-"map <leader>gtr :YcmCompleter GoToReferences<CR>
+map <leader>gtt :YcmCompleter GoTo<CR>
+map <leader>gtd :YcmCompleter GoToDefinition<CR>
+map <leader>gtr :YcmCompleter GoToReferences<CR>
 
 " split switch
 map <leader>hh <C-w>h
