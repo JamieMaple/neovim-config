@@ -327,15 +327,13 @@ let g:ale_fixers = {
 \ 'vue': ['prettier'],
 \}
 "let g:ale_linters_explicit = 1 " 有坑。。。开启打开文件夹不能用了。。
-"let g:ale_sign_column_always = 1 " 左侧始终打开
-"let g:ale_open_list = 1
+let g:ale_sign_column_always = 1 " 左侧始终打开
 let g:ale_set_loclist = 1
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_warning_str = 'warn'
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
-let g:ale_sign_warning = '⚡'
+let g:ale_sign_warning = '⚡️'
 let g:ale_sign_error = '✗'
-"let g:ale_keep_list_window_open = 0
 "let g:ale_set_quickfix = 1
 
 " for airline
@@ -352,6 +350,7 @@ let &t_ZR = "\e[23m"
 hi Comment cterm=italic gui=italic
 hi Keyword cterm=italic gui=italic
 hi Type cterm=italic gui=italic
+hi htmlArg cterm=italic gui=italic
 
 " tree
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
@@ -395,7 +394,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
 """""""""""
 let mapleader = " "
 " map <C-n> :NERDTreeToggle<CR>
-map <C-n> :VimFilerExplorer<CR>
+map <C-n> :VimFilerExplorer -parent<CR>
 nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
 " disable arrows
