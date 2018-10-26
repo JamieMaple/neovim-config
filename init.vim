@@ -30,7 +30,8 @@ filetype on
 syntax on
 
 
-set encoding=UTF-8
+set encoding=utf-8
+set fileencoding=utf-8
 
 " plugins
 
@@ -312,7 +313,8 @@ let b:ale_linters = {
 \   'haskell': ['ghc', 'cabal-ghc', 'stack-ghc'],
 \   'c#': ['OmniSharp'],
 \   'javascript': ['eslint'],
-\   'typescript': ['tslint']
+\   'typescript': ['tslint'],
+\   'python': ['flake8']
 \ }
 
 let g:ale_fixers = {
@@ -327,6 +329,7 @@ let g:ale_fixers = {
 \ 'vue': ['prettier'],
 \}
 "let g:ale_linters_explicit = 1 " 有坑。。。开启打开文件夹不能用了。。
+let g:ale_lint_delay = 1000
 let g:ale_sign_column_always = 1 " 左侧始终打开
 let g:ale_set_loclist = 1
 let g:ale_echo_msg_error_str = 'error'
