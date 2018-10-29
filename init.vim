@@ -78,6 +78,9 @@ Plug 'honza/vim-snippets'
 Plug 'OmniSharp/omnisharp-vim' " need to have some config files
 "Plug 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
 
+" docker
+Plug 'https://github.com/ekalinin/Dockerfile.vim.git'
+
 " fish
 Plug 'https://github.com/dag/vim-fish'
 
