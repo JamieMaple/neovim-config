@@ -21,6 +21,7 @@ autocmd filetype javascript setlocal ts=2 sw=2
 autocmd filetype typescript setlocal ts=2 sw=2
 autocmd filetype wxss setlocal ts=2 sw=2
 autocmd filetype json setlocal ts=2 sw=2
+autocmd filetype yaml setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
 autocmd FileType vue syntax sync fromstart
