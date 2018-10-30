@@ -67,6 +67,12 @@ Plug 'https://github.com/Shougo/neco-vim'
 " github
 " Plug 'SevereOverfl0w/deoplete-github'
 
+" language server
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+
 " haksell
 Plug 'https://github.com/eagletmt/neco-ghc'
 
@@ -106,7 +112,7 @@ Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './inst
 Plug 'Valloric/YouCompleteMe' " with typescript and node install
 Plug 'scrooloose/nerdcommenter'
 Plug 'https://github.com/skywind3000/asyncrun.vim.git'
-Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " color themes
 Plug 'https://github.com/tpope/vim-fugitive.git'
@@ -140,7 +146,9 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 
 " indent enable
-let g:indentLine_char = '▏'
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+"let g:indent_guides_guide_size=2
 " Vim
 let g:indentLine_color_term = 239
 
