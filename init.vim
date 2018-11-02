@@ -179,6 +179,17 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-space>'
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
+" haskell hie
+let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
 
 "let g:UltiSnipsExpandTrigger="<tab>"
 " deoplete
@@ -322,7 +333,7 @@ let b:ale_linters = {
 \   'c': ['clang'],
 \   'c++': ['clang'],
 \   'go': ['golint', 'go vet', 'go build'],
-\   'haskell': ['ghc', 'cabal-ghc', 'stack-ghc'],
+\   'haskell': ['stack-ghc'],
 \   'c#': ['OmniSharp'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint'],
