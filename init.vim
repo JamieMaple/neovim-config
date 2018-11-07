@@ -118,6 +118,13 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
+Plug 'https://github.com/iceisspetrel/Monrovia'
+Plug 'ashfinal/vim-colors-violet'
+Plug 'https://github.com/Erichain/vim-monokai-pro.git'
+Plug 'https://github.com/lifepillar/vim-solarized8.git'
+Plug 'https://github.com/altercation/vim-colors-solarized.git'
+Plug 'https://github.com/chriskempson/vim-tomorrow-theme'
+
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
@@ -141,7 +148,8 @@ Plug 'chemzqm/wxapp.vim'
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
@@ -161,8 +169,6 @@ let g:indentLine_color_dark = 7 " (default: 2)
 
 " markdown
 let g:vim_markdown_conceal = 0
-let vim_markdown_preview_github=1
-let vim_markdown_preview_browser='Google Chrome'
 
 " javascript
 let g:javascript_plugin_jsdoc = 1
@@ -178,6 +184,15 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_key_invoke_completion = '<C-space>'
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-n>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " haskell hie
 let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
@@ -273,12 +288,15 @@ let g:user_emmet_settings = {
 if (has("termguicolors"))
     set termguicolors
 endif
+
 syntax enable
+" colorscheme Tomorrow-Night
 " colorscheme molokai
-colorscheme gruvbox
-set background=dark
-" bg transparent
-"hi! Normal ctermbg=NONE guibg=NONE
+" colorscheme gruvbox
+" colorscheme monrovia
+" colorscheme monokai_pro
+colorscheme solarized8
+" set background=dark
 
 call fugitive#head()
 
@@ -296,8 +314,9 @@ let g:NERDTreeIndicatorMapCustom = {
 \ "Unknown"   : "?"
 \ }
 
+let g:airline_theme='tomorrow'
 " let g:airline_theme='molokai'
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
 
 " vim filer
 "   Settings | VimFiler
@@ -447,6 +466,16 @@ map <leader>jj <C-w>j
 map <leader>kk <C-w>k
 
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+
+" background
+nnoremap <silent> <Leader>b :call ToggleBackground()<CR>
+function! ToggleBackground()
+    if &background == "light"
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
 
 
 
