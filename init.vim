@@ -32,8 +32,11 @@ autocmd filetype json setlocal ts=2 sw=2
 autocmd filetype yaml setlocal ts=2 sw=2
 autocmd filetype wxml setlocal ts=2 sw=2
 autocmd filetype vue setlocal ts=2 sw=2
-autocmd FileType vue syntax sync fromstart
+autocmd filetype vue setlocal ts=2 sw=2
+autocmd fileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead *.pug setlocal ts=2 sw=2
 autocmd BufNewFile,BufRead fish_funced set ft=fish
+au BufNewFile,BufRead *.gradle set filetype=groovy
 
 filetype on
 syntax on
@@ -73,8 +76,13 @@ Plug 'davidhalter/jedi-vim'
 " vim
 Plug 'https://github.com/Shougo/neco-vim'
 
+Plug 'https://github.com/matze/vim-lilypond'
+
 " python
 "Plug 'zchee/deoplete-jedi'
+
+" rust
+Plug 'rust-lang/rust.vim'
 
 " github
 " Plug 'SevereOverfl0w/deoplete-github'
@@ -99,6 +107,9 @@ Plug 'OmniSharp/omnisharp-vim' " need to have some config files
 
 " docker
 Plug 'https://github.com/ekalinin/Dockerfile.vim.git'
+
+" gradle
+Plug 'https://github.com/tfnico/vim-gradle'
 
 " fish
 Plug 'https://github.com/dag/vim-fish'
@@ -130,6 +141,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'morhetz/gruvbox'
 Plug 'flazz/vim-colorschemes'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/iceisspetrel/Monrovia'
 Plug 'ashfinal/vim-colors-violet'
 Plug 'https://github.com/Erichain/vim-monokai-pro.git'
@@ -203,7 +215,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " haskell hie
@@ -217,6 +229,7 @@ map <Leader>lb :call LanguageClient#textDocument_references()<CR>
 map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
+let g:LanguageClient_diagnosticsDisplay = {}
 
 "let g:UltiSnipsExpandTrigger="<tab>"
 " deoplete
@@ -250,6 +263,7 @@ let g:vue_disable_pre_processors=1
 
 " cs
 let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_port = 2000
 let g:OmniSharp_timeout = 5
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview' if you
@@ -265,9 +279,6 @@ set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.
 " You might also want to look at the echodoc plugin.
 set previewheight=5
-
-" Tell ALE to use OmniSharp for linting C# files, and no other linters.
-let g:ale_linters = { 'cs': ['OmniSharp'] }
 
 augroup omnisharp_commands
     autocmd!
@@ -314,7 +325,7 @@ nnoremap <F2> :OmniSharpRename<CR>
 " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
 command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
-nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+nnoremap <Leader>fc :OmniSharpCodeFormat<CR>
 
 " Start the omnisharp server for the current solution
 nnoremap <Leader>ss :OmniSharpStartServer<CR>
@@ -379,11 +390,16 @@ endif
 syntax enable
 " colorscheme Tomorrow-Night
 " colorscheme molokai
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme monrovia
 " colorscheme monokai_pro
-colorscheme solarized8
-" set background=dark
+" colorscheme solarized8
+" colorscheme dracula
+set background=dark
+
+" let g:airline_theme='tomorrow'
+" let g:airline_theme='molokai'
+let g:airline_theme='gruvbox'
 
 call fugitive#head()
 
@@ -401,9 +417,6 @@ let g:NERDTreeIndicatorMapCustom = {
 \ "Unknown"   : "?"
 \ }
 
-let g:airline_theme='tomorrow'
-" let g:airline_theme='molokai'
-" let g:airline_theme='gruvbox'
 
 " vim filer
 "   Settings | VimFiler
@@ -438,13 +451,15 @@ let NERDTreeShowHidden = 1 " toggle show hidden files, `shift - i`
 let g:ale_linters_explicit = 1
 let b:ale_linters = {
 \   'c': ['clang'],
-\   'c++': ['clang'],
 \   'cs': ['OmniSharp'],
-\   'go': ['golint', 'go vet', 'go build'],
-\   'haskell': ['stack-ghc'],
+\   'cpp': ['cppcheck'],
+\   'go': ['gofmt', 'go build'],
+\   'haskell': ['hie', 'stack-ghc'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint'],
-\   'python': ['flake8']
+\   'python': ['flake8'],
+\   'java': ['javac'],
+\   'rust': ['cargo']
 \ }
 
 let g:ale_fixers = {
@@ -454,6 +469,7 @@ let g:ale_fixers = {
 \ 'typescript': ['tslint', 'prettier'],
 \   'json': ['prettier'],
 \ 'json5': ['prettier'],
+\ 'go': ['gofmt', 'goimports'],
 \ 'css': ['stylelint', 'prettier'],
 \ 'less': ['stylelint', 'prettier'],
 \ 'vue': ['prettier'],
@@ -529,6 +545,17 @@ let mapleader = " "
 " map <C-n> :NERDTreeToggle<CR>
 map <C-n> :VimFilerExplorer -parent<CR>
 nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
+
+" exit
+nnoremap <C-c> :qa!<CR>
+
+" custom key mappings
+inoremap <C-u> <esc>viwUea
+
+" tab for bn and bp
+nnoremap <tab> :bn<CR>
+nnoremap <s-tab> :bp<CR>
+nnoremap <C-d> :bd<CR>
 
 " disable arrows
 map <Up> <Nop>
